@@ -12,7 +12,18 @@ const SearchResults = () => {
 
   async function getSearchResults() {
     const data = await Services.searchByText(searchText);
-    setMovies(data.Search);
+    // antes de setear el state, vamos a modiciar el array y ponerle un precio random a cada item
+    // * ...item es el objeto pelicula
+    // {
+    //   Poster, Title, Year, Type, imdbID;
+    // }
+    const alterData = data.Search.map((item) => {
+      return {
+        ...item,
+        Price: (Math.random() * 10).toFixed(2),
+      };
+    });
+    setMovies(alterData);
   }
 
   useEffect(() => {
