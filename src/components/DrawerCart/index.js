@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ShoppingCartContext } from "../../context";
 import { Box, IconButton, Badge, Drawer, Typography } from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const DrawerCart = () => {
+  const { items } = useContext(ShoppingCartContext);
+
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(!open);
@@ -15,7 +18,7 @@ const DrawerCart = () => {
           color: "#fff",
         }}
       >
-        <Badge badgeContent={4} color="secondary">
+        <Badge badgeContent={String(items.length)} color="secondary">
           <ShoppingCartRoundedIcon />
         </Badge>
       </IconButton>
