@@ -1,6 +1,15 @@
 import { useState, useContext } from "react";
 import { ShoppingCartContext } from "../../context";
-import { Box, IconButton, Badge, Drawer, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Badge,
+  Drawer,
+  Typography,
+  Card,
+  CardContent,
+  Stack,
+} from "@mui/material";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 
 const DrawerCart = () => {
@@ -28,6 +37,45 @@ const DrawerCart = () => {
           <Typography variant="body1">
             Resume of my movie and tv shows
           </Typography>
+          {items.length > 0 &&
+            items.map((item, index) => (
+              <Box mt={3}>
+                <Card>
+                  <CardContent>
+                    <Stack
+                      direction="row"
+                      justifyContent="space-between"
+                      gap={3}
+                    >
+                      <img
+                        width={100}
+                        height={100}
+                        style={{
+                          objectFit: "cover",
+                          borderRadius: 4,
+                        }}
+                        src={item.movie.Poster}
+                        alt={item.movie.Title}
+                      />
+                      <Stack
+                        sx={{
+                          textAlign: "left",
+                          width: "100%",
+                        }}
+                      >
+                        <Typography variant="h6">{item.movie.Title}</Typography>
+                        <Typography variant="subtitle1">
+                          $ {item.movie.Price}
+                        </Typography>
+                        <Typography variant="subtitle1">
+                          {item.quantity}
+                        </Typography>
+                      </Stack>
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Box>
+            ))}
         </Box>
       </Drawer>
     </Box>
