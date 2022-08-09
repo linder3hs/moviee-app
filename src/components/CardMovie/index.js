@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { MovieFavoriteContext } from "../../context";
 import {
+  Button,
   Card,
   CardContent,
   CardMedia,
@@ -8,6 +9,7 @@ import {
   Typography,
   Chip,
   Rating,
+  Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -47,7 +49,7 @@ const CardMovie = ({ movie }) => {
     <Grid item xs={12} md={4} my={3}>
       <Card
         sx={{
-          height: 430,
+          height: 450,
         }}
       >
         <CardMedia
@@ -81,16 +83,21 @@ const CardMovie = ({ movie }) => {
               />
             </Grid>
             <Grid item xs={12}>
-              {/* El corazon se pinta si es que value = 1 */}
-              <StyledRating
-                max={1}
-                value={value}
-                icon={<FavoriteIcon fontSize="inherit" />}
-                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-                onChange={(event, newValue) =>
-                  handleChangeFavorite(event, newValue)
-                }
-              />
+              <Stack direction="row" justifyContent="space-between">
+                <Button variant="contained" size="small">
+                  Add to cart
+                </Button>
+                {/* El corazon se pinta si es que value = 1 */}
+                <StyledRating
+                  max={1}
+                  value={value}
+                  icon={<FavoriteIcon fontSize="inherit" />}
+                  emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                  onChange={(event, newValue) =>
+                    handleChangeFavorite(event, newValue)
+                  }
+                />
+              </Stack>
             </Grid>
           </Grid>
         </CardContent>
